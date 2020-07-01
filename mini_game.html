@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game: Rock-Paper-Scissors</title>
+</head>
+<body>
+  <script>
+    // Fuction computerPlay: Computer will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’.
+    function computerPlay() {
+      let num = Math.floor(Math.random() * Math.floor(3));
+      switch (num) {
+        case 0:
+          return "rock";
+          break;
+        case 1:
+          return "paper";
+          break;
+        default:
+          return "scissors"
+          break;
+      }
+    }
+    // Function playRound: It will return the result the winner.
+    function playRound(playerSelection, computerSelection) { 
+          playerSelection = playerSelection.toLowerCase();
+
+          if (playerSelection == computerSelection) {
+            return 'We have the same result!';
+          } else if (['rock', 'paper', 'scissors'].includes(playerSelection)){
+            switch (computerSelection) {
+              case 'rock':
+                return (playerSelection == 'paper')? "You win! Paper beats Rock" : "You lose! Rock beats Scissors";
+                break;
+              case 'paper': 
+              return (playerSelection == 'scissors')? "You win! Scissors beats Paper" : "You lose! Paper beats Rock";
+                break;
+              case 'scissors':
+              return (playerSelection == 'rock')? "You win! Rock beats Scissors" : "You lose! Scissors beats Paper";
+                break;
+            }
+          } else {
+            return "Please select one of the listed suggestions. You can enter uppercase or lowercase as you like! "
+          }
+    }
+
+    // Function game: start to play game
+    function game() {
+      let number_round = 5;
+      do {
+        number_round = Number(prompt("How many round do you want to play?\n Please, type a number >= 0. (default: 5 round)", 5));
+      } while (number_round < 0);
+
+      for (let round = 1; round <= number_round; round++){
+        const computerSelection = computerPlay();
+        const playerSelection = prompt("ROUND:"+ round +"/"+ number_round +" \nWhat do you choose: 'rock', 'paper' or 'scissors'?");
+
+        console.log("Round: " + round + " =>   " + playRound(playerSelection, computerSelection));
+      } 
+    }
+    
+    // Function Helper: list information about function in this Mini-game
+    function helper() {
+      console.log("Function Helper: list information about function in this Mini-game \nFuction computerPlay: Computer will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’.\nFunction playRound: It will return the result the winner.\nFunction game: start to play game");
+    }
+    </script>
+  
+</body>
+</html>
